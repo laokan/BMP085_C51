@@ -10,6 +10,7 @@
 #include	"typedef.h"
 #include	"uart.h"
 #include	"bmp085.h"
+//#include	"dht11.h"
 
 unsigned char ge,shi,bai,qian,wan,shiwan;
 
@@ -66,6 +67,7 @@ void bmp085Convert()
 //*********************************************************
 void main()
 {
+	//int *temp_value;
 	delay(50);	                  //上电延时		
 	uartInit();                   //液晶初始化
 	delay(20);
@@ -74,6 +76,15 @@ void main()
   while(1)                      //循环
   { 
     bmp085Convert();
+		
+/*		temp_value = getTempHumi();
+		uartSendString("T2:");
+		uartSendData(temp_value[0]);
+		uartSendString(" \r\n");
+		uartSendString("H:");	
+		uartSendData(temp_value[1]);
+		uartSendString(" \r\n");				
+	*/
 		delay(1000);
   }
 } 
