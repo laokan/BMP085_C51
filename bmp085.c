@@ -78,12 +78,12 @@ void BMP085_SendByte(BYTE dat)
 	BYTE i;
 	for (i=0; i<8; i++)         //8位计数器
 	{
-			dat <<= 1;              //移出数据的最高位
-			SDA = CY;               //送数据口
-			SCL = 1;                //拉高时钟线
-			Delay5us();             //延时
-			SCL = 0;                //拉低时钟线
-			Delay5us();             //延时
+		dat <<= 1;              //移出数据的最高位
+		SDA = CY;               //送数据口
+		SCL = 1;                //拉高时钟线
+		Delay5us();             //延时
+		SCL = 0;                //拉低时钟线
+		Delay5us();             //延时
 	}
 	BMP085_RecvACK();
 }
@@ -99,12 +99,12 @@ BYTE BMP085_RecvByte()
 	SDA = 1;                    //使能内部上拉,准备读取数据,
 	for (i=0; i<8; i++)         //8位计数器
 	{
-			dat <<= 1;
-			SCL = 1;                //拉高时钟线
-			Delay5us();             //延时
-			dat |= SDA;             //读数据
-			SCL = 0;                //拉低时钟线
-			Delay5us();             //延时
+		dat <<= 1;
+		SCL = 1;                //拉高时钟线
+		Delay5us();             //延时
+		dat |= SDA;             //读数据
+		SCL = 0;                //拉低时钟线
+		Delay5us();             //延时
 	}
 	return dat;
 }
@@ -186,13 +186,13 @@ long *bmp085ConvertAll()
 	long ut,up;
 	long x1, x2, b5, b6, x3, b3, p;
 	unsigned long b4, b7;
-  long ret[2];
+	long ret[2];
 	ut = bmp085ReadTemp();
 	ut = bmp085ReadTemp();	   // 读取温度
 	up = bmp085ReadPressure();
 	up = bmp085ReadPressure();
 	
-  x1 = ((long)ut - ac6) * ac5 >> 15;
+	x1 = ((long)ut - ac6) * ac5 >> 15;
 	x2 = ((long) mc << 11) / (x1 + md);
 	b5 = x1 + x2;
 	ret[0] = (b5 + 8) >> 4;
@@ -209,7 +209,7 @@ long *bmp085ConvertAll()
 	b7 = ((unsigned long) up - b3) * (50000 >> OSS);
 	if( b7 < 0x80000000)
 		p = (b7 * 2) / b4 ;
-  else
+	else
 		p = (b7 / b4) * 2;
 	x1 = (p >> 8) * (p >> 8);
 	x1 = (x1 * 3038) >> 16;

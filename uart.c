@@ -1,4 +1,4 @@
-﻿#include  "stc15f204ea.h"
+#include "stc15f204ea.h"
 #include "typedef.h"
 #include "gpio.h"
 #include "uart.h"

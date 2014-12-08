@@ -21,7 +21,7 @@ void conversion(long temp_data)
     temp_data=temp_data%100000;  //取余运算
     wan=temp_data/10000+0x30 ;
     temp_data=temp_data%10000;   //取余运算
-		qian=temp_data/1000+0x30 ;
+	qian=temp_data/1000+0x30 ;
     temp_data=temp_data%1000;    //取余运算
     bai=temp_data/100+0x30;
     temp_data=temp_data%100;     //取余运算
@@ -38,7 +38,7 @@ void bmp085Convert()
 	
 	bmp085result = bmp085ConvertAll();
 	conversion(bmp085result[0]);
-  uartSendString("T");
+	uartSendString("T");
 	uartSendString(":");
 	uartSendData(bai);
 	uartSendData(shi);
@@ -73,18 +73,19 @@ void main()
 	delay(20);
 	uartSendString("uart INIT");
 	Init_BMP085();              //初始化BMP085 
-  while(1)                      //循环
-  { 
-    bmp085Convert();
+	while(1)                      //循环
+	{ 
+		bmp085Convert();
 		
-/*		temp_value = getTempHumi();
+		/*
+		temp_value = getTempHumi();
 		uartSendString("T2:");
 		uartSendData(temp_value[0]);
 		uartSendString(" \r\n");
 		uartSendString("H:");	
 		uartSendData(temp_value[1]);
 		uartSendString(" \r\n");				
-	*/
+		*/
 		delay(1000);
-  }
+	}
 } 
