@@ -17,17 +17,17 @@ unsigned char ge,shi,bai,qian,wan,shiwan;
 //*********************************************************
 void conversion(long temp_data)
 {    
-    shiwan=temp_data/100000+0x30 ;
-    temp_data=temp_data%100000;  //取余运算
-    wan=temp_data/10000+0x30 ;
-    temp_data=temp_data%10000;   //取余运算
+	shiwan=temp_data/100000+0x30 ;
+	temp_data=temp_data%100000;  //取余运算
+	wan=temp_data/10000+0x30 ;
+	temp_data=temp_data%10000;   //取余运算
 	qian=temp_data/1000+0x30 ;
-    temp_data=temp_data%1000;    //取余运算
-    bai=temp_data/100+0x30;
-    temp_data=temp_data%100;     //取余运算
-    shi=temp_data/10+0x30;
-    temp_data=temp_data%10;      //取余运算
-    ge=temp_data+0x30;
+	temp_data=temp_data%1000;    //取余运算
+	bai=temp_data/100+0x30;
+	temp_data=temp_data%100;     //取余运算
+	shi=temp_data/10+0x30;
+	temp_data=temp_data%10;      //取余运算
+	ge=temp_data+0x30;
 }
 
 //***********************************************************************
