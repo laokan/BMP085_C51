@@ -6,11 +6,10 @@
 // 时间：2011年7月1日
 // QQ： 41484807
 //****************************************
-#include  "stc15f204ea.h"
+#include	"stc15f204ea.h"
 #include	"typedef.h"
 #include	"uart.h"
 #include	"bmp085.h"
-//#include	"dht11.h"
 
 unsigned char ge,shi,bai,qian,wan,shiwan;
 
@@ -69,23 +68,13 @@ void main()
 {
 	//int *temp_value;
 	delay(50);	                  //上电延时		
-	uartInit();                   //液晶初始化
+	uartInit();                   //uart初始化
 	delay(20);
 	uartSendString("uart INIT");
 	Init_BMP085();              //初始化BMP085 
 	while(1)                      //循环
 	{ 
 		bmp085Convert();
-		
-		/*
-		temp_value = getTempHumi();
-		uartSendString("T2:");
-		uartSendData(temp_value[0]);
-		uartSendString(" \r\n");
-		uartSendString("H:");	
-		uartSendData(temp_value[1]);
-		uartSendString(" \r\n");				
-		*/
 		delay(1000);
 	}
 } 
