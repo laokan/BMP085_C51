@@ -18,6 +18,8 @@ short mb;
 short mc;
 short md;
 
+long temperature,pressure;
+
 /**************************************
 起始信号
 **************************************/
@@ -181,12 +183,11 @@ long bmp085ReadPressure(void)
 	return pressure;
 }
 
-long *bmp085ConvertAll()
+void bmp085Compute()
 {
 	long ut,up;
 	long x1, x2, b5, b6, x3, b3, p;
 	unsigned long b4, b7;
-	long ret[2];
 	ut = bmp085ReadTemp();
 	ut = bmp085ReadTemp();	   // 读取温度
 	up = bmp085ReadPressure();
@@ -195,7 +196,7 @@ long *bmp085ConvertAll()
 	x1 = ((long)ut - ac6) * ac5 >> 15;
 	x2 = ((long) mc << 11) / (x1 + md);
 	b5 = x1 + x2;
-	ret[0] = (b5 + 8) >> 4;
+	temperature = (b5 + 8) >> 4;
 
 	b6 = b5 - 4000;
 	x1 = (b2 * (b6 * b6 >> 12)) >> 11;
@@ -214,6 +215,5 @@ long *bmp085ConvertAll()
 	x1 = (p >> 8) * (p >> 8);
 	x1 = (x1 * 3038) >> 16;
 	x2 = (-7357 * p) >> 16;
-	ret[1] = p + ((x1 + x2 + 3791) >> 4);
-	return ret;
+	pressure = p + ((x1 + x2 + 3791) >> 4);
 }

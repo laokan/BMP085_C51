@@ -39,18 +39,6 @@ void Delay5us()		//@22.1184MHz
 	while (--i);
 }
 
-void Delay10us()		//@22.1184MHz
-{
-	unsigned char i;
-
-	_nop_();
-	_nop_();
-	_nop_();
-	i = 52;
-	while (--i);
-}
-
-
 /**************************************
 延时5毫秒(STC90C52RC@12M)
 不同的工作环境,需要调整此函数

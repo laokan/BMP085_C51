@@ -4,9 +4,6 @@
 #define	BMP085_SlaveAddress   0xee	  //bmp085 i2c address
 #define OSS 0	// Oversampling Setting (note: code is not set up to use other OSS values)
 
-#include "typedef.h"
-
-
 void delay(unsigned int k);                                                                        
 //------------------------------------
 void Init_BMP085();
@@ -18,6 +15,6 @@ void Init_BMP085();
 //BYTE BMP085_RecvByte();
 //long bmp085ReadTemp(void);
 //long bmp085ReadPressure(void);
-long *bmp085ConvertAll();
+void bmp085Compute();
 //-----------------------------------
 #endif

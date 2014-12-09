@@ -12,6 +12,7 @@
 #include	"bmp085.h"
 
 unsigned char ge,shi,bai,qian,wan,shiwan;
+extern long temperature,pressure;
 
 //*********************************************************
 void conversion(long temp_data)
@@ -32,11 +33,8 @@ void conversion(long temp_data)
 //***********************************************************************
 void bmp085Convert()
 {
-	//long temperature,pressure;
-	long *bmp085result;
-	
-	bmp085result = bmp085ConvertAll();
-	conversion(bmp085result[0]);
+	bmp085Compute();
+	conversion(temperature);
 	uartSendString("T");
 	uartSendString(":");
 	uartSendData(bai);
@@ -46,10 +44,9 @@ void bmp085Convert()
 	uartSendString(" ");
 	//uartSendString(0xDF);
 	uartSendString("C");
-	uartSendString("\r\n");
-	
+	uartSendString("\r\n");	
 
-	conversion(bmp085result[1]);
+	conversion(pressure);
 	uartSendString("P");
 	uartSendString(":");
 	uartSendData(shiwan);
@@ -66,7 +63,6 @@ void bmp085Convert()
 //*********************************************************
 void main()
 {
-	//int *temp_value;
 	delay(50);	                  //上电延时		
 	uartInit();                   //uart初始化
 	delay(20);
